@@ -92,8 +92,12 @@ router.post('/buscarQRCodeAssinaturaEPagamento', async function(req, res){
 // ---------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------
 
-router.get('/', function(req, res){
+/*router.get('/', function(req, res){
     console.log("Sem Front End");
+});*/
+
+router.get('/teste', function(req, res){
+    console.log("esse aqui é um teste");
 });
 
 export { router }
