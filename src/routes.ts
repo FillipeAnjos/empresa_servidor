@@ -98,6 +98,7 @@ router.post('/buscarQRCodeAssinaturaEPagamento', async function(req, res){
 
 router.get('/teste', function(req, res){
     console.log("esse aqui é um teste");
+    res.json({ title: 'API em Node js' });
 });
 
 export { router }
