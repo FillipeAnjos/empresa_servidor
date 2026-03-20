@@ -1,11 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateCliente1731004395504 implements MigrationInterface {
+export class CreateUsuario1773927779253 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "cliente",
+                name: "usuario",
                 columns: [
                     {
                         name: "id",
@@ -15,17 +15,26 @@ export class CreateCliente1731004395504 implements MigrationInterface {
                         isGenerated: true
                     },
                     {
-                        name: "seu_nome",
+                        name: "nome",
                         type: "varchar",
                         length: '60',
                         isNullable: false
                     },
                     {
-                        name: "seu_email",
+                        name: "login",
                         type: "varchar",
                         isUnique: true,
                         length: '70',
                         isNullable: false
+                    },
+                    {
+                        name: "senha",
+                        type: "varchar"
+                    },
+                    {
+                        name: "firma_id",
+                        type: "int",
+                        isNullable: true
                     },
                     {
                         name: "created_at",
@@ -38,12 +47,22 @@ export class CreateCliente1731004395504 implements MigrationInterface {
                         default: "now()"
                     },
                 ],
+                foreignKeys: [
+                    {
+                        name: "FKFirma",
+                        referencedTableName: "firma",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["firma_id"],
+                        onDelete: "SET NULL",
+                        onUpdate: "SET NULL"
+                    }
+                ]
             })
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("cliente");
+        await queryRunner.dropTable("usuario");
     }
 
 }

@@ -75,30 +75,4 @@ npm run typeorm migration:run
 //Comando para rodar as migrations - SERVIDOR
 npx typeorm migration:run
 
-## FRONT-END
-
-npx create-next-app <nome projeto>
-
-npm add typescript @types/react @types/node -D
-
-npm i react-pro-sidebar
-
-npm add react-icons
-
-npm add sass
-
-npm add axios
-
-npm add next-auth
-npm add @types/next-auth -D
-
-npm install react-paginate
-
-npm install @mui/material @emotion/react @emotion/styled
-
-### VARIAVEIS DE AMBIENTE - FRONT-END
-
-NEXT_PUBLIC_CHAVE_API_OpenWeatherMap=<Sua chave>
-
-NEXT_PUBLIC_CHAVE_SENHA_ADM=<Sua chave>
 
