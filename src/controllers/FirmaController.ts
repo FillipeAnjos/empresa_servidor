@@ -15,6 +15,20 @@ class FirmaController{
         
     }
 
+    async listarFirma() {
+
+        const firmaService = new FirmaService();
+
+        const firma = firmaService.listar();
+
+        if(!firma){
+            return false;
+        }
+
+        return firma;
+        
+    }
+
 }
 
 export { FirmaController }

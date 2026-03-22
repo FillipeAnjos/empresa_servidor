@@ -10,9 +10,6 @@ const router = Router();
 const firmaController = new FirmaController();
 const usuarioController = new UsuarioController();
 
-
-
-
 router.post('/cadastrarFirma', async function(req, res){
     
     try{
@@ -24,13 +21,24 @@ router.post('/cadastrarFirma', async function(req, res){
     
 })
 
+router.get('/listarFirma', async function(req, res){
+    
+    try{
+        const firma = await firmaController.listarFirma();
+        return res.status(200).send({ firma });
+    }catch(err){
+        return res.status(400).send({ error: "Error ao listar as firmas: " + err });
+    }
+    
+})
+
 router.post('/cadastrarUsuario', async function(req, res){
     
     try{
         const usuario = await usuarioController.cadastrarUsuario(req, res);
         return usuario;
     }catch(err){
-        return res.status(400).send({ error: "Error ao cadastrar o usuario: " + err });
+        return res.status(400).send({ msg: "Error ao cadastrar o usuario: " + err });
     }
     
 })

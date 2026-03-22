@@ -19,6 +19,16 @@ class FirmaService{
 
     }
 
+    async listar(){
+
+        const firmaRepository = getCustomRepository(FirmaRepositories);
+
+        const firma = await firmaRepository.createQueryBuilder("firma").getMany();
+
+        return firma;
+
+    }
+
 }
 
 export { FirmaService }
