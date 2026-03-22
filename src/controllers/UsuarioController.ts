@@ -3,6 +3,26 @@ import { UsuarioService } from "../services/UsuarioService";
 
 class UsuarioController{
 
+    async loginUsuario(request: Request, response: Response) {
+
+        const login = request.body.login;
+        const senha = request.body.senha;
+
+        if(!login || !senha){
+            return {
+                status: 400,
+                msg: "todos os campos devem estar preenchidos!",
+            }
+        }
+
+        const usuarioService = new UsuarioService();
+
+        const user = usuarioService.logar(login, senha);
+
+        return user;
+
+    }
+
     async cadastrarUsuario(request: Request, response: Response) {
 
         const nome = request.body.nome;
