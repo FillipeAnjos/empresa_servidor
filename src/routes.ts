@@ -36,7 +36,7 @@ router.post('/cadastrarUsuario', async function(req, res){
     
     try{
         const usuario = await usuarioController.cadastrarUsuario(req, res);
-        return usuario;
+        return res.status(200).send({ usuario });
     }catch(err){
         return res.status(400).send({ msg: "Error ao cadastrar o usuario: " + err });
     }
