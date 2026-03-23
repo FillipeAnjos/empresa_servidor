@@ -6,6 +6,16 @@ class UsuarioService{
 
     async cadastrar(nome: string, login: string, senha: string, firma_id: number){
 
+        var usuarioExistente = await this.verificarUsuarioExistente(login);
+
+        if(usuarioExistente){
+            return {
+                status: 409,
+                msg: "Esse usuário já consta em nosso sistema!",
+                usuario: null
+            }
+        }
+
         const usuarioRepository = getCustomRepository(UsuarioRepositories);
 
         const senhaHash = await hash(senha, 10);
@@ -18,20 +28,33 @@ class UsuarioService{
 
     }
 
-    async logar(login: string, senha: string){
+    async verificarUsuarioExistente(login: string){
 
         const usuarioRepository = getCustomRepository(UsuarioRepositories);
 
         const user = await usuarioRepository.findOne({login});
 
+        return user ? true : false;
+
+    }
+
+    async logar(login: string, senha: string){
+
+        const usuarioRepository = getCustomRepository(UsuarioRepositories);
+
+        //const user = await usuarioRepository.findOne({login});
+
+        var sql = `SELECT u.id, u.nome as nomeUser, u.login, u.senha, u.firma_id, f.nome as nomeFirma FROM usuario u INNER JOIN firma f ON u.firma_id = f.id where login = '${login}'`;
+        const user = await usuarioRepository.query(sql);
+        
         // Verificar se o email existe.
-        if(!user){
+        if(!user[0].login){
             var error = { status: false, error: "Email e/ou Senha incorretos." };
             return error;
         }
 
         // Verificar se a senha está correta
-        const senhHash = await compare(senha, user.senha);
+        const senhHash = await compare(senha, user[0].senha);
         if(!senhHash){
             var error = { status: false, error: "Email e/ou Senha incorretos.." };
             return error;
@@ -39,7 +62,17 @@ class UsuarioService{
 
         var token = Math.random().toString() + "_" + user.id; //'Token-12345678911';
 
-        return { status: true, sucesso: "Usuário logado com sucesso.", id: user.id, nome: user.nome, login: user.login }
+        var dados = { 
+            status: true, 
+            sucesso: "Usuário logado com sucesso.", 
+            id: user[0].id, 
+            nome: user[0].nomeuser, 
+            login: user[0].login, 
+            idfirma: user[0].firma_id, 
+            nomefirma: user[0].nomefirma 
+        };
+
+        return dados;
 
     }
 

@@ -17,7 +17,7 @@ class UsuarioController{
 
         const usuarioService = new UsuarioService();
 
-        const user = usuarioService.logar(login, senha);
+        const user = await usuarioService.logar(login, senha);
 
         return user;
 
@@ -47,10 +47,14 @@ class UsuarioController{
             }
         }
 
-        const usuario = usuarioService.cadastrar(nome, login, senha, firma_id);
+        const usuario: any = await usuarioService.cadastrar(nome, login, senha, firma_id);
 
         if(!usuario){
             return { status: 404, msg: "Erro ao salvar o usuário."};
+        }
+
+        if(usuario.status == 409){
+            return usuario;
         }
 
         return { status: 200, msg: "Usuário cadastrado com sucesso", usuario: usuario};
