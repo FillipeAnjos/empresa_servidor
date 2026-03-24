@@ -1,14 +1,13 @@
 import { Router, Request, Response } from 'express';
 import { FirmaController } from './controllers/FirmaController';
 import { UsuarioController } from './controllers/UsuarioController';
-
-import { ClienteController } from './controllers/ClienteController';
-import { AssinaturaepagamentoController } from './controllers/AssinaturaepagamentoController';
+import { LancamentoController } from './controllers/LancamentoController';
 
 const router = Router();
 
 const firmaController = new FirmaController();
 const usuarioController = new UsuarioController();
+const lancamentoController = new LancamentoController();
 
 router.post('/cadastrarFirma', async function(req, res){
     
@@ -54,62 +53,16 @@ router.post('/loginUsuario', async function(req, res){
     
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const clienteController = new ClienteController();
-const assinaturaepagamentoController = new AssinaturaepagamentoController();
-
-router.post('/cadastrarCliente', async function(req, res){
-
+router.post('/cadastrarLancamento', async function(req, res){
+    
     try{
-        const cliente = await clienteController.cadastrarCliente(req, res);
-        return res.status(200).send({ cliente });
+        const lancamento = await lancamentoController.cadastrarLancamento(req, res);
+        return res.status(200).send({ lancamento });
     }catch(err){
-        return res.status(400).send({ error: "Error ao cadastrar o cliente: " + err });
+        return res.status(400).send({ msg: "Error ao cadastrar o lançamento: " + err });
     }
-
+    
 })
-
-router.get('/listarClientes', async function(req, res){
-
-    try{
-        const clientes = await clienteController.listarClientes();
-        return res.status(200).send({ clientes });
-    }catch(err){
-        return res.status(400).send({ error: "Error ao buscar os clientes: " + err });
-    }
-
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ---------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------

@@ -29,14 +29,18 @@ export class CreateLancamentos1773927794437 implements MigrationInterface {
                         type: "varchar"
                     },
                     {
+                        name: "sincronizado",
+                        type: "boolean"
+                    },
+                    {
                         name: "firma_id",
                         type: "int",
-                        isNullable: true
+                        isNullable: false
                     },
                     {
                         name: "usuario_id",
                         type: "int",
-                        isNullable: true
+                        isNullable: false
                     },
                     {
                         name: "created_at",
