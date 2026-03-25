@@ -9,10 +9,10 @@ const firmaController = new FirmaController();
 const usuarioController = new UsuarioController();
 const lancamentoController = new LancamentoController();
 
-router.post('/cadastrarFirma', async function(req, res){
+router.post('/cadastrarEditarFirma', async function(req, res){
     
     try{
-        const firma = await firmaController.cadastrarfirma(req, res);
+        const firma = await firmaController.cadastrarEditarFirma(req, res);
         return res.status(200).send({ firma });
     }catch(err){
         return res.status(400).send({ error: "Error ao cadastrar a firma: " + err });

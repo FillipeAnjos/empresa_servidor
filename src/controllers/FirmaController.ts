@@ -3,13 +3,14 @@ import { FirmaService } from "../services/FirmaService";
 
 class FirmaController{
 
-    async cadastrarfirma(request: Request, response: Response) {
+    async cadastrarEditarFirma(request: Request, response: Response) {
 
+        const id = !request.body.id || request.body.id == undefined ? null : request.body.id;
         const nome = request.body.nome;
 
         const firmaService = new FirmaService();
 
-        const firma = firmaService.cadastrar(nome);
+        const firma = firmaService.cadastrarEditar(id, nome);
 
         return firma;
         

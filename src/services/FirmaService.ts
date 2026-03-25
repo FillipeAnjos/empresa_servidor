@@ -3,11 +3,11 @@ import { FirmaRepositories } from "../repositories/FirmaRepositories";
 
 class FirmaService{
 
-    async cadastrar(nome: string){
+    async cadastrarEditar(id: number, nome: string){
 
         const firmaRepository = getCustomRepository(FirmaRepositories);
 
-        const salvarFirma = firmaRepository.create( {nome: nome} );
+        const salvarFirma = firmaRepository.create( {id: id, nome: nome} );
 
         const firmaSalvar = firmaRepository.save(salvarFirma);
         
