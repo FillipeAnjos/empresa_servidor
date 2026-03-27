@@ -58,7 +58,9 @@ class UsuarioController{
             return usuario;
         }
 
-        return { status: 200, msg: "Usuário cadastrado com sucesso", usuario: usuario};
+        //return { status: 200, msg: "Usuário cadastrado com sucesso", usuario: usuario};
+
+        return usuario;
         
     }
 
