@@ -4,7 +4,7 @@ import { hash, compare } from "bcryptjs";
 
 class UsuarioService{
 
-    async cadastrar(nome: string, login: string, senha: string, firma_id: number){
+    async cadastrar(id: number, nome: string, login: string, senha: string, firma_id: number){
 
         var usuarioExistente = await this.verificarUsuarioExistente(login);
 
@@ -20,11 +20,15 @@ class UsuarioService{
 
         const senhaHash = await hash(senha, 10);
 
-        const salvarUsuario = usuarioRepository.create( {nome: nome, login: login, senha: senhaHash, firma_id: firma_id} );
+        const salvarUsuario = usuarioRepository.create( {id: id, nome: nome, login: login, senha: senhaHash, firma_id: firma_id} );
 
         const usuarioSalvar = usuarioRepository.save(salvarUsuario);
-        
-        return usuarioSalvar
+
+        if(!usuarioSalvar){
+            return { error: true, msg: "Erro ao salvar o usuário."};
+        }
+
+        return { error: false, msg: "Usuário cadastrado com sucesso", idCadastrado: (await usuarioSalvar).id };
 
     }
 

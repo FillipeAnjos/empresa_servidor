@@ -5,6 +5,7 @@ class LancamentoController{
 
     async cadastrarLancamento(request: Request, response: Response) {
 
+        const id = !request.body.id || request.body.id == undefined ? null : request.body.id;
         const tipo = request.body.tipo;
         const data_hora = request.body.data_hora;
         const descricao = request.body.descricao;
@@ -22,17 +23,31 @@ class LancamentoController{
             }
         }
 
-        const lacamento: any = await lancamentoService.cadastrar(tipo, data_hora, descricao, sincronizado, firma_id, usuario_id);
+        const lancamento: any = await lancamentoService.cadastrar(id, tipo, data_hora, descricao, sincronizado, firma_id, usuario_id);
 
-        if(!lacamento){
+        if(!lancamento){
             return { status: 404, msg: "Erro ao salvar o lançamento."};
         }
 
-        if(lacamento.status == 409){
-            return lacamento;
+        if(lancamento.status == 409){
+            return lancamento;
         }
 
-        return { status: 200, msg: "Lançamento cadastrado com sucesso", lacamento: lacamento};
+        return lancamento;
+        
+    }
+
+    async listarLancamento() {
+
+        const lancamentoService = new LancamentoService();
+
+        const lancamento = lancamentoService.listar();
+
+        if(!lancamento){
+            return false;
+        }
+
+        return lancamento;
         
     }
 

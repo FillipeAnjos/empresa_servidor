@@ -23,8 +23,9 @@ class UsuarioController{
 
     }
 
-    async cadastrarUsuario(request: Request, response: Response) {
+    async cadastrarEditarUsuario(request: Request, response: Response) {
 
+        const id = !request.body.id || request.body.id == undefined ? null : request.body.id;
         const nome = request.body.nome;
         const login = request.body.login;
         const senha = request.body.senha;
@@ -47,7 +48,7 @@ class UsuarioController{
             }
         }
 
-        const usuario: any = await usuarioService.cadastrar(nome, login, senha, firma_id);
+        const usuario: any = await usuarioService.cadastrar(id, nome, login, senha, firma_id);
 
         if(!usuario){
             return { status: 404, msg: "Erro ao salvar o usuário."};

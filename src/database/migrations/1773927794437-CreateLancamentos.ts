@@ -52,24 +52,6 @@ export class CreateLancamentos1773927794437 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     },
-                ],
-                foreignKeys: [
-                    {
-                        name: "FKFirma",
-                        referencedTableName: "firma",
-                        referencedColumnNames: ["id"],
-                        columnNames: ["firma_id"],
-                        onDelete: "SET NULL",
-                        onUpdate: "SET NULL"
-                    },
-                    {
-                        name: "FKUsuario",
-                        referencedTableName: "usuario",
-                        referencedColumnNames: ["id"],
-                        columnNames: ["usuario_id"],
-                        onDelete: "SET NULL",
-                        onUpdate: "SET NULL"
-                    }
                 ]
             })
         );

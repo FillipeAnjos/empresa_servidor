@@ -31,10 +31,10 @@ router.get('/listarFirma', async function(req, res){
     
 })
 
-router.post('/cadastrarUsuario', async function(req, res){
+router.post('/cadastrarEditarUsuario', async function(req, res){
     
     try{
-        const usuario = await usuarioController.cadastrarUsuario(req, res);
+        const usuario = await usuarioController.cadastrarEditarUsuario(req, res);
         return res.status(200).send({ usuario });
     }catch(err){
         return res.status(400).send({ msg: "Error ao cadastrar o usuario: " + err });
@@ -60,6 +60,18 @@ router.post('/cadastrarLancamento', async function(req, res){
         return res.status(200).send({ lancamento });
     }catch(err){
         return res.status(400).send({ msg: "Error ao cadastrar o lançamento: " + err });
+    }
+    
+})
+
+
+router.get('/buscarLancamento', async function(req, res){
+    
+    try{
+        const lancamento = await lancamentoController.listarLancamento();
+        return res.status(200).send({ lancamento });
+    }catch(err){
+        return res.status(400).send({ error: "Error ao listar os lançamentos: " + err });
     }
     
 })
