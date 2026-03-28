@@ -76,6 +76,17 @@ router.get('/buscarLancamento', async function(req, res){
     
 })
 
+router.get('/listarUsuarios', async function(req, res){
+    
+    try{
+        const usuario = await usuarioController.listarUsuario();
+        return res.status(200).send({ usuario });
+    }catch(err){
+        return res.status(400).send({ error: "Error ao listar os usuários: " + err });
+    }
+    
+})
+
 // ---------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------

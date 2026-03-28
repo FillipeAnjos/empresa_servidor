@@ -6,19 +6,21 @@ class UsuarioService{
 
     async cadastrar(id: number, nome: string, login: string, senha: string, firma_id: number){
 
-        var usuarioExistente = await this.verificarUsuarioExistente(login);
+        if(!id){
+            var usuarioExistente = await this.verificarUsuarioExistente(login);
 
-        if(usuarioExistente){
-            return {
-                status: 409,
-                msg: "Esse usuário já consta em nosso sistema!",
-                usuario: null
+            if(usuarioExistente){
+                return {
+                    status: 409,
+                    msg: "Esse usuário já consta em nosso sistema!",
+                    usuario: null
+                }
             }
         }
 
         const usuarioRepository = getCustomRepository(UsuarioRepositories);
 
-        const senhaHash = await hash(senha, 10);
+        const senhaHash = id ? senha : await hash(senha, 10);
 
         const salvarUsuario = usuarioRepository.create( {id: id, nome: nome, login: login, senha: senhaHash, firma_id: firma_id} );
 
@@ -28,7 +30,7 @@ class UsuarioService{
             return { error: true, msg: "Erro ao salvar o usuário."};
         }
 
-        return { error: false, msg: "Usuário cadastrado com sucesso", idCadastrado: (await usuarioSalvar).id };
+        return { error: false, msg: id ? "Usuário atualizado com sucesso." : "Usuário cadastrado com sucesso.", idCadastrado: (await usuarioSalvar).id, senhaCadastrada: senhaHash };
 
     }
 
@@ -77,6 +79,16 @@ class UsuarioService{
         };
 
         return dados;
+
+    }
+
+    async listar(){
+
+        const usuarioRepository = getCustomRepository(UsuarioRepositories);
+
+        const usuario = await usuarioRepository.createQueryBuilder("usuario").getMany();
+
+        return usuario;
 
     }
 

@@ -34,19 +34,24 @@ class UsuarioController{
         
         const usuarioService = new UsuarioService();
 
-        if(senha != confirma_senha){
-            return {
-                status: 400,
-                msg: "A senha e confirma senha deverão necessariamente ser iguais!",
+        // Cadastro
+        if(!id){
+
+            /*if(senha != confirma_senha){
+                return {
+                    status: 400,
+                    msg: "A senha e confirma senha deverão necessariamente ser iguais!",
+                }
+            }*/
+
+            if (!nome || !login || !senha || !firma_id) {
+             return {
+                    status: 400,
+                    msg: "Todos dos campos deverão ser informados!",
+                }
             }
-        }
-        
-        if (!nome || !login || !senha || !firma_id || !confirma_senha) {
-         return {
-                status: 400,
-                msg: "Todos dos campos deverão ser informados!",
-            }
-        }
+
+        }        
 
         const usuario: any = await usuarioService.cadastrar(id, nome, login, senha, firma_id);
 
@@ -58,7 +63,19 @@ class UsuarioController{
             return usuario;
         }
 
-        //return { status: 200, msg: "Usuário cadastrado com sucesso", usuario: usuario};
+        return usuario;
+        
+    }
+
+    async listarUsuario() {
+
+        const usuarioService = new UsuarioService();
+
+        const usuario = usuarioService.listar();
+
+        if(!usuario){
+            return false;
+        }
 
         return usuario;
         
