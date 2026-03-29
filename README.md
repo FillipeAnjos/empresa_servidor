@@ -1,7 +1,7 @@
 ## About Empresa - BACK-END
 
-Bem-vindo ao Empresas, aplicativo desenhado para functionar Offline First, fácil e inteligente. 
-Com a interface intuitiva, você pode criar, editar, visualizar e muito mais, tudo online ou offline.
+Bem-vindo ao Empresas, aplicativo desenhado para functionar Offline First, fácil e inteligente. <br>
+Com a interface intuitiva, você pode criar, editar, visualizar e muito mais, tudo online ou offline. <br>
 OBS: O projeto Empresas foi criado como forma de apresentação.
 
 ## Tecnologias 
@@ -10,12 +10,12 @@ Node Js / TypeScript / JavaScript / TypeOrm / PostgreSQL
 
 ## Instalação
 
-1° Clonar o projeto
-2° cd empresa_servidor
-3° npm install 
-4° npm run dev ou yarn dev 
-5° OBS: Esse projeto contém apenas o Back-End do sistema
-   o Front-end se encontra em outro repositório. 
+1° Clonar o projeto <br>
+2° cd empresa_servidor <br>
+3° npm install <br>
+4° npm run dev ou yarn dev <br>
+5° OBS: Esse projeto contém apenas o Back-End do sistema <br>
+   o Front-end se encontra em outro repositório. <br>
 
 ## Bibliotecas
 
@@ -50,40 +50,40 @@ npm install moment --save
 npm install dotenv
 
 ### Referente ao babel para "build" e depois "start"
-npm add @babel/cli -D
-npm add @babel/core -D
-npm add @babel/node -D
-npm add @babel/plugin-proposal-class-properties -D
-npm add @babel/plugin-proposal-decorators -D
-npm add @babel/preset-env -D
-npm add babel-plugin-module-resolver -D
-npm add babel-plugin-transform-typescript-metadata -D
-npm add @babel/preset-typescript -D
+npm add @babel/cli -D <br>
+npm add @babel/core -D <br>
+npm add @babel/node -D <br>
+npm add @babel/plugin-proposal-class-properties -D <br>
+npm add @babel/plugin-proposal-decorators -D <br>
+npm add @babel/preset-env -D <br>
+npm add babel-plugin-module-resolver -D <br>
+npm add babel-plugin-transform-typescript-metadata -D <br>
+npm add @babel/preset-typescript -D <br>
 
 ### -----------------------------------------------------
 
 ### Arquivos importantes
 
-ormconfig.js - Raiz do projeto
-tsconfig.json - Raiz do projeto
-.env - Raiz do projeto
-babel.config.js - Raiz do projeto
-package.json - Raiz do projeto
+ormconfig.js - Raiz do projeto <br>
+tsconfig.json - Raiz do projeto <br>
+.env - Raiz do projeto <br>
+babel.config.js - Raiz do projeto <br>
+package.json - Raiz do projeto <br>
 
 ### BACK-END COMANDOS - TYPEORM
 
-//Comando para criar uma migration
+Comando para criar uma migration <br>
 npx typeorm migration:create -n Create<nome da migration>
 
-//Comando para rodar as migrations
+Comando para rodar as migrations <br>
 npm run typeorm migration:run
 
 ## Passos para subir o projeto - BACK-END
 
-1° - Crie uma base de dados com o nome que preferir. Eu usei o nome "empresa". Lambrando que o banco é PostgreSQL.
+1° - Crie uma base de dados com o nome que preferir. Eu usei o nome "empresa". Lambrando que o banco é PostgreSQL. <br>
 
-2° - Ponha todas as informações da sua conexão no arquivo ".env" que se encontra na raiz do projeto.
+2° - Ponha todas as informações da sua conexão no arquivo ".env" que se encontra na raiz do projeto. <br>
 
-3° - rode o comando " npm run typeorm migration:run " para criar todas as migrations.
+3° - rode o comando " npm run typeorm migration:run " para criar todas as migrations. <br>
 
 
