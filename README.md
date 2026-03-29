@@ -1,13 +1,17 @@
-## About Estoque - BACK-END
+## About Empresa - BACK-END
+
+Bem-vindo ao Empresas, aplicativo desenhado para functionar Offline First, fácil e inteligente. 
+Com a interface intuitiva, você pode criar, editar, visualizar e muito mais, tudo online ou offline.
+OBS: O projeto Empresas foi criado como forma de apresentação.
 
 ## Tecnologias 
 
-React Js / Next Js / Sass / TypeScript / JavaScript / TypeOrm / PostgreSQL
+Node Js / TypeScript / JavaScript / TypeOrm / PostgreSQL
 
 ## Instalação
 
 1° Clonar o projeto
-2° cd Front-Estoque
+2° cd empresa_servidor
 3° npm install 
 4° npm run dev ou yarn dev 
 5° OBS: Esse projeto contém apenas o Back-End do sistema
@@ -31,12 +35,6 @@ npm install typescript
 ### Usar criptografia
 npm install bcryptjs
 npm add @types/bcryptjs -D
-
-### Usar o banco de dados MySQL
-npm install mysql --save
-
-### Usar o banco de dados PostgreSQL
-npm install pg
 
 ### Instalação do Metadata
 npm install reflect-metadata
@@ -64,6 +62,14 @@ npm add @babel/preset-typescript -D
 
 ### -----------------------------------------------------
 
+### Arquivos importantes
+
+ormconfig.js - Raiz do projeto
+tsconfig.json - Raiz do projeto
+.env - Raiz do projeto
+babel.config.js - Raiz do projeto
+package.json - Raiz do projeto
+
 ### BACK-END COMANDOS - TYPEORM
 
 //Comando para criar uma migration
@@ -72,7 +78,12 @@ npx typeorm migration:create -n Create<nome da migration>
 //Comando para rodar as migrations
 npm run typeorm migration:run
 
-//Comando para rodar as migrations - SERVIDOR
-npx typeorm migration:run
+## Passos para subir o projeto - BACK-END
+
+1° - Crie uma base de dados com o nome que preferir. Eu usei o nome "empresa". Lambrando que o banco é PostgreSQL.
+
+2° - Ponha todas as informações da sua conexão no arquivo ".env" que se encontra na raiz do projeto.
+
+3° - rode o comando " npm run typeorm migration:run " para criar todas as migrations.
 
 
